@@ -1,0 +1,63 @@
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 5px, 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.RunEntry-Inputs {
+  width: 25%;
+  border-radius: 5px;
+  border: 2px solid #008cba;
+  background-color: #f2f2f2;
+  padding: 10px;
+  align-items: left;
+}
+
+label {
+  display: inline;
+  float: left;
+}
+
+h3 {
+  text-align: left;
+  margin-top: 5px;
+  color: #008cba;
+}
+
+button {
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px 24px;
+  background-color: #008cba;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.RunEntry-Distance,
+.RunEntry-Pace {
+  width: 40%;
+  display: inline-block;
+  margin-right: 10px;
+  text-align: left;
+  float: left;
+}
+
+.RunEntry-Numbers {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  border-radius: 5px;
+}
+
+.RunEntry-Date {
+  width: 30%;
+  display: block;
+}
