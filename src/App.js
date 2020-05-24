@@ -23,7 +23,7 @@ class App extends Component {
           comment: "Easy run",
         },
         {
-          id: 2,
+          id: 3,
           date: "07.05.2020",
           distance: "11",
           pace: "5:40",
@@ -32,6 +32,7 @@ class App extends Component {
       ],
     };
     this.addRun = this.addRun.bind(this);
+    this.removeRun = this.removeRun.bind(this);
   }
 
   addRun(date, distance, pace, comment) {
@@ -54,11 +55,26 @@ class App extends Component {
     });
   }
 
+  removeRun(idToDelete) {
+    let runentries = this.state.runentries;
+    for (var i = 0; i < runentries.length; i++) {
+      if (runentries[i].id == idToDelete) {
+        runentries.splice(i, 1);
+      }
+    }
+    this.setState({
+      runentries: runentries,
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <RunEntry></RunEntry>
-        <RunEntryList runentries={this.state.runentries}></RunEntryList>
+        <RunEntry onAdd={this.addRun}></RunEntry>
+        <RunEntryList
+          runentries={this.state.runentries}
+          removeItem={this.removeRun}
+        ></RunEntryList>
       </div>
     );
   }
