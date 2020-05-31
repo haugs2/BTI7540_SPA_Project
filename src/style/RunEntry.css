@@ -58,10 +58,17 @@ button {
 }
 
 .RunEntry-Date {
-  width: 30%;
+  width: 60%;
   display: block;
 }
 
 .RunEntry-container {
+  margin-left: 10px;
   width: 100%;
+}
+
+.error {
+  font-size: x-small;
+  margin-bottom: 2px;
+  color: red;
 }
