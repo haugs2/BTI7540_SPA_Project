@@ -72,7 +72,9 @@ class App extends Component {
       <div className="App">
         <RunEntry onAdd={this.addRun}></RunEntry>
         <RunEntryList
-          runentries={this.state.runentries}
+          runentries={this.state.runentries.sort((a, b) =>
+            a.date > b.date ? -1 : 1
+          )}
           removeItem={this.removeRun}
         ></RunEntryList>
       </div>
