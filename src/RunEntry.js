@@ -24,6 +24,7 @@ class RunEntry extends Component {
     this.onRunEntryDateChange = this.onRunEntryDateChange.bind(this);
     this.resetState = this.resetState.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   resetState() {
@@ -102,6 +103,22 @@ class RunEntry extends Component {
     });
   };
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.onRunEntryAdd(event);
+    // It is in the nature of this fake API that changes are only simulated and not actually persisted!
+    fetch("https://my-json-server.typicode.com/haugs2/jsonruns/runs", {
+      method: "POST",
+      // We convert the React state to JSON and send it as the POST body
+      body: JSON.stringify(this.state),
+    }).then(function (response) {
+      console.log(response);
+      return response.json();
+    });
+
+    event.preventDefault();
+  };
+
   validateForm = (errors) => {
     let valid = true;
     Object.values(errors).forEach(
@@ -114,7 +131,7 @@ class RunEntry extends Component {
   render() {
     return (
       <div className="RunEntry-container">
-        <form className="RunEntry-Inputs">
+        <form className="RunEntry-Inputs" onSubmit={this.handleSubmit}>
           <h3>My latest run</h3>
           <div className="RunEntry-Date">
             <label>Date</label>
@@ -164,7 +181,7 @@ class RunEntry extends Component {
               value={this.state.comment}
             ></textarea>
           </div>
-          <button onClick={this.onRunEntryAdd}>Add Run</button>
+          <input type="submit" value="Add run" />
         </form>
       </div>
     );
