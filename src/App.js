@@ -7,7 +7,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      runentries: [
+      isLoaded: false,
+      runentries: [],
+      /*runentries: [
         {
           id: 1,
           date: "04.05.2020",
@@ -29,12 +31,22 @@ class App extends Component {
           pace: "5:40",
           comment: "Long run",
         },
-      ],
+      ]*/
     };
     this.addRun = this.addRun.bind(this);
     this.removeRun = this.removeRun.bind(this);
   }
 
+  componentDidMount() {
+    fetch("https://my-json-server.typicode.com/haugs2/jsonruns/runs")
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({
+          isLoaded: true,
+          runentries: json,
+        });
+      });
+  }
   addRun(date, distance, pace, comment) {
     let runentries = this.state.runentries;
     let maxId = 0;
@@ -68,17 +80,22 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        <RunEntry onAdd={this.addRun}></RunEntry>
-        <RunEntryList
-          runentries={this.state.runentries.sort((a, b) =>
-            a.date > b.date ? -1 : 1
-          )}
-          removeItem={this.removeRun}
-        ></RunEntryList>
-      </div>
-    );
+    var { isLoaded, runentries } = this.state;
+    if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        <div className="App">
+          <RunEntry onAdd={this.addRun}></RunEntry>
+          <RunEntryList
+            runentries={this.state.runentries.sort((a, b) =>
+              a.date > b.date ? -1 : 1
+            )}
+            removeItem={this.removeRun}
+          ></RunEntryList>
+        </div>
+      );
+    }
   }
 }
 
