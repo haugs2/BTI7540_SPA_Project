@@ -105,18 +105,20 @@ class RunEntry extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.onRunEntryAdd(event);
+
     // It is in the nature of this fake API that changes are only simulated and not actually persisted!
-    fetch("https://my-json-server.typicode.com/haugs2/jsonruns/runs", {
+    // another fake server would be https://my-json-server.typicode.com/haugs2/jsonruns/runs
+    let body = JSON.stringify(this.state);
+    fetch("http://localhost:4000/runs", {
       method: "POST",
       // We convert the React state to JSON and send it as the POST body
-      body: JSON.stringify(this.state),
+      body: body,
     }).then(function (response) {
       console.log(response);
       return response.json();
     });
-
-    event.preventDefault();
+    this.onRunEntryAdd(event);
+    //event.preventDefault();
   };
 
   validateForm = (errors) => {
@@ -132,7 +134,7 @@ class RunEntry extends Component {
     return (
       <div className="RunEntry-container">
         <form className="RunEntry-Inputs" onSubmit={this.handleSubmit}>
-          <h3>My latest run</h3>
+          <h3>Fill in run data</h3>
           <div className="RunEntry-Date">
             <label>Date</label>
             <input

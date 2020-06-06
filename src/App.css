@@ -1,10 +1,18 @@
 .App {
   text-align: center;
+  align-items: center;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.App-title {
+  letter-spacing: 2px;
+  color: #008cba;
+  font-size: xx-large;
+  border-bottom: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

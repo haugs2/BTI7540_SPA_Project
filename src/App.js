@@ -38,7 +38,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch("https://my-json-server.typicode.com/haugs2/jsonruns/runs")
+    // another fake server is https://my-json-server.typicode.com/haugs2/jsonruns/runs
+    fetch("http://localhost:4000/runs")
       .then((res) => res.json())
       .then((json) => {
         this.setState({
@@ -86,6 +87,7 @@ class App extends Component {
     } else {
       return (
         <div className="App">
+          <h1 className="App-title">Running Diary</h1>
           <RunEntry onAdd={this.addRun}></RunEntry>
           <RunEntryList
             runentries={this.state.runentries.sort((a, b) =>
