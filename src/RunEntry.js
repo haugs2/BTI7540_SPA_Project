@@ -106,7 +106,6 @@ class RunEntry extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    // It is in the nature of this fake API that changes are only simulated and not actually persisted!
     // another fake server would be https://my-json-server.typicode.com/haugs2/jsonruns/runs
     let body = JSON.stringify(this.state);
     fetch("http://localhost:4000/runs", {
@@ -143,6 +142,7 @@ class RunEntry extends Component {
               type="text"
               onChange={this.onRunEntryDateChange}
               value={this.state.date}
+              defaultValue={this.props.defaultDate || ""}
             ></input>
             {this.state.errors.date.length > 0 && (
               <span className="error">{this.state.errors.date}</span>
@@ -156,6 +156,7 @@ class RunEntry extends Component {
                 type="text"
                 onChange={this.onRunEntryDistanceChange}
                 value={this.state.distance}
+                defaultValue={this.props.defaultDistance || ""}
               ></input>
               {this.state.errors.distance.length > 0 && (
                 <span className="error">{this.state.errors.distance}</span>
@@ -168,6 +169,7 @@ class RunEntry extends Component {
                 type="text"
                 onChange={this.onRunEntryPaceChange}
                 value={this.state.pace}
+                defaultValue={this.props.defaultPace || ""}
               ></input>
               {this.state.errors.pace.length > 0 && (
                 <span className="error">{this.state.errors.pace}</span>
@@ -182,6 +184,7 @@ class RunEntry extends Component {
               type="text"
               onChange={this.onRunEntryCommentChange}
               value={this.state.comment}
+              defaultValue={this.props.defaultComment || ""}
             ></textarea>
           </div>
           <input type="submit" value="Add run" />

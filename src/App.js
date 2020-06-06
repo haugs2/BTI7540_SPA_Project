@@ -9,7 +9,9 @@ class App extends Component {
     super(props);
     this.state = {
       isLoaded: false,
+      isEditTriggered: false,
       runentries: [],
+      editingIds: [],
       /*runentries: [
         {
           id: 1,
@@ -36,6 +38,7 @@ class App extends Component {
     };
     this.addRun = this.addRun.bind(this);
     this.removeRun = this.removeRun.bind(this);
+    this.setRunToEdit = this.setRunToEdit.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +72,14 @@ class App extends Component {
     });
   }
 
+  setRunToEdit(idToEdit) {
+    let runsToEdit = this.state.editingIds;
+    runsToEdit.push(idToEdit);
+    this.setState({
+      editingIds: runsToEdit,
+    });
+  }
+
   removeRun(idToDelete) {
     let runentries = this.state.runentries;
     for (var i = 0; i < runentries.length; i++) {
@@ -92,12 +103,17 @@ class App extends Component {
             <FaRunning />
             <span className="App-title-text">Running Diary</span>
           </h1>
-          <RunEntry onAdd={this.addRun}></RunEntry>
+          <RunEntry
+            onAdd={this.addRun}
+            editTriggered={this.state.isEditTriggered}
+          ></RunEntry>
           <RunEntryList
             runentries={this.state.runentries.sort((a, b) =>
               a.date > b.date ? -1 : 1
             )}
             removeItem={this.removeRun}
+            editingIds={this.state.editingIds}
+            handleEdit={this.setRunToEdit}
           ></RunEntryList>
         </div>
       );
