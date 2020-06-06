@@ -3,5 +3,7 @@ ul {
 }
 
 .container-RunEntryList {
-  width: 50%;
+  margin: auto;
+  text-align: center;
+  width: 60%;
 }

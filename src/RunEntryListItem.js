@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./style/RunEntryListItem.css";
+import { FaEdit } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 class RunEntryListItem extends Component {
   constructor(props) {
     super(props);
     this.onRemoveRunEntryFromListClicked = this.onRemoveRunEntryFromListClicked.bind(
+      this
+    );
+    this.onEditRunEntryFromListClicked = this.onEditRunEntryFromListClicked.bind(
       this
     );
   }
@@ -14,6 +19,10 @@ class RunEntryListItem extends Component {
     event.preventDefault();
     let idToDelete = this.props.id;
     this.props.onDelete(idToDelete);
+  }
+
+  onEditRunEntryFromListClicked(event) {
+    return;
   }
 
   render() {
@@ -38,7 +47,14 @@ class RunEntryListItem extends Component {
             <label className="RunEntryListItem-label">Comment: </label>
             {this.props.comment}
           </div>
-
+          <button
+            className="RunEntryListItem-btn"
+            onClick={this.onEditRunEntryFromListClicked}
+          >
+            <IconContext.Provider value={{ color: "white" }}>
+              <FaEdit color="white"></FaEdit>
+            </IconContext.Provider>
+          </button>
           <button
             className="RunEntryListItem-btn"
             onClick={this.onRemoveRunEntryFromListClicked}

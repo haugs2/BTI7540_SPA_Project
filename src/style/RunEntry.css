@@ -13,12 +13,13 @@ textarea {
 }
 
 .RunEntry-Inputs {
-  width: 25%;
   border-radius: 5px;
   border: 2px solid #008cba;
   background-color: #f2f2f2;
   padding: 10px;
   align-items: left;
+  display: inline-block;
+  width: 50%;
 }
 
 label {
@@ -63,12 +64,9 @@ button {
 }
 
 .RunEntry-container {
-  margin-left: 10px;
-  margin-top: 20px;
-  width: 100%;
-  display: table;
-  margin-right: auto;
-  margin-left: auto;
+  display: inline-block;
+  width: 50%;
+  border-bottom: 10px;
 }
 
 .error {

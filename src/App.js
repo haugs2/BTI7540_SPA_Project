@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import RunEntry from "./RunEntry";
 import RunEntryList from "./RunEntryList";
 import "./App.css";
+import { FaRunning } from "react-icons/fa";
 
 class App extends Component {
   constructor(props) {
@@ -87,7 +88,10 @@ class App extends Component {
     } else {
       return (
         <div className="App">
-          <h1 className="App-title">Running Diary</h1>
+          <h1 className="App-title">
+            <FaRunning />
+            <span className="App-title-text">Running Diary</span>
+          </h1>
           <RunEntry onAdd={this.addRun}></RunEntry>
           <RunEntryList
             runentries={this.state.runentries.sort((a, b) =>

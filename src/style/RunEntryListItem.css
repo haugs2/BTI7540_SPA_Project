@@ -26,3 +26,8 @@
   margin-right: 2px;
   font-weight: bold;
 }
+
+.RunEntryListItem-EditContainer {
+  font-color: white;
+  color: white;
+}
