@@ -18,6 +18,15 @@ class RunEntryListItem extends Component {
   onRemoveRunEntryFromListClicked(event) {
     event.preventDefault();
     let idToDelete = this.props.id;
+    let url = "http://localhost:4000/runs/".concat(idToDelete);
+    fetch(url, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      // We convert the React state to JSON and send it as the POST body
+    }).then(function (response) {
+      console.log(response);
+      return response.json();
+    });
     this.props.onDelete(idToDelete);
   }
 
