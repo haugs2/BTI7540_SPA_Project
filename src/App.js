@@ -9,7 +9,6 @@ class App extends Component {
     super(props);
     this.state = {
       isLoaded: false,
-      isEditTriggered: false,
       runentries: [],
       editingIds: [],
       /*runentries: [
@@ -39,10 +38,15 @@ class App extends Component {
     this.addRun = this.addRun.bind(this);
     this.removeRun = this.removeRun.bind(this);
     this.setRunToEdit = this.setRunToEdit.bind(this);
+    this.removeRunToEdit = this.removeRunToEdit.bind(this);
+    this.loadData = this.loadData.bind(this);
   }
 
   componentDidMount() {
-    // another fake server is https://my-json-server.typicode.com/haugs2/jsonruns/runs
+    this.loadData();
+  }
+
+  loadData() {
     fetch("http://localhost:4000/runs")
       .then((res) => res.json())
       .then((json) => {
@@ -80,6 +84,19 @@ class App extends Component {
     });
   }
 
+  removeRunToEdit(idNoLongerEdit) {
+    let runsToEdit = this.state.editingIds;
+    for (var i = 0; i < runsToEdit.length; i++) {
+      if (runsToEdit[i].id == idNoLongerEdit) {
+        runsToEdit.splice(i, 1);
+      }
+    }
+    this.setState({
+      editingIds: runsToEdit,
+    });
+    this.loadData();
+  }
+
   removeRun(idToDelete) {
     let runentries = this.state.runentries;
     for (var i = 0; i < runentries.length; i++) {
@@ -103,10 +120,7 @@ class App extends Component {
             <FaRunning />
             <span className="App-title-text">Running Diary</span>
           </h1>
-          <RunEntry
-            onAdd={this.addRun}
-            editTriggered={this.state.isEditTriggered}
-          ></RunEntry>
+          <RunEntry onAdd={this.addRun}></RunEntry>
           <RunEntryList
             runentries={this.state.runentries.sort((a, b) =>
               a.date > b.date ? -1 : 1
@@ -114,6 +128,7 @@ class App extends Component {
             removeItem={this.removeRun}
             editingIds={this.state.editingIds}
             handleEdit={this.setRunToEdit}
+            handleEditDone={this.removeRunToEdit}
           ></RunEntryList>
         </div>
       );

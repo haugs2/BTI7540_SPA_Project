@@ -1,3 +1,11 @@
 .EditInputField {
   width: 20px;
 }
+
+.EditRunForm-Submit {
+  width: 20px;
+  height: 20px;
+  font-size: x-small;
+  padding: 0px 0px;
+  float: right;
+}

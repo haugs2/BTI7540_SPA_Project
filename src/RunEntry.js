@@ -187,7 +187,7 @@ class RunEntry extends Component {
               defaultValue={this.props.defaultComment || ""}
             ></textarea>
           </div>
-          <input type="submit" value="Add run" />
+          <input className="RunEntry-Submit" type="submit" value="Add run" />
         </form>
       </div>
     );

@@ -11,6 +11,7 @@ class RunEntryList extends Component {
     super(props);
     this.removeListItem = this.removeListItem.bind(this);
     this.editListItem = this.editListItem.bind(this);
+    this.editDoneListItem = this.editDoneListItem.bind(this);
   }
 
   removeListItem(id) {
@@ -21,6 +22,10 @@ class RunEntryList extends Component {
     return this.props.handleEdit(id);
   }
 
+  editDoneListItem(id) {
+    return this.props.handleEditDone(id);
+  }
+
   render() {
     return (
       <div className="container-RunEntryList">
@@ -28,10 +33,12 @@ class RunEntryList extends Component {
           {this.props.runentries.map((runentry) => {
             return this.props.editingIds.includes(runentry.id) ? (
               <EditRunForm
+                id={runentry.id}
                 defaultDate={runentry.date}
                 defaultPace={runentry.pace}
                 defaultComment={runentry.comment}
                 defaultDistance={runentry.distance}
+                onEditDone={this.editDoneListItem}
               ></EditRunForm>
             ) : (
               <RunEntryListItem
