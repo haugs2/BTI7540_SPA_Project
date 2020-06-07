@@ -123,7 +123,10 @@ class App extends Component {
           <RunEntry onAdd={this.addRun}></RunEntry>
           <RunEntryList
             runentries={this.state.runentries.sort((a, b) =>
-              a.date > b.date ? -1 : 1
+              new Date(a.date.replace(/(\d{2}).(\d{2}).(\d{4})/, "$2/$1/$3")) >
+              new Date(b.date.replace(/(\d{2}).(\d{2}).(\d{4})/, "$2/$1/$3"))
+                ? -1
+                : 1
             )}
             removeItem={this.removeRun}
             editingIds={this.state.editingIds}
