@@ -74,6 +74,7 @@ class App extends Component {
     this.setState({
       runentries: runentries,
     });
+    this.loadData();
   }
 
   setRunToEdit(idToEdit) {

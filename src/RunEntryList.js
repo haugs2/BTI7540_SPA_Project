@@ -12,6 +12,7 @@ class RunEntryList extends Component {
     this.removeListItem = this.removeListItem.bind(this);
     this.editListItem = this.editListItem.bind(this);
     this.editDoneListItem = this.editDoneListItem.bind(this);
+    this.parsePaceNumber = this.parsePaceNumber.bind(this);
   }
 
   removeListItem(id) {
@@ -26,6 +27,12 @@ class RunEntryList extends Component {
     return this.props.handleEditDone(id);
   }
 
+  parsePaceNumber(pacenumber) {
+    let minutes = Math.trunc(pacenumber);
+    let seconds = Math.round((pacenumber % 1) * 60);
+    return minutes.toString().concat(":").concat(seconds.toString());
+  }
+
   render() {
     return (
       <div className="container-RunEntryList">
@@ -35,7 +42,7 @@ class RunEntryList extends Component {
               <EditRunForm
                 id={runentry.id}
                 defaultDate={runentry.date}
-                defaultPace={runentry.pace}
+                defaultPace={this.parsePaceNumber(runentry.pace)}
                 defaultComment={runentry.comment}
                 defaultDistance={runentry.distance}
                 onEditDone={this.editDoneListItem}

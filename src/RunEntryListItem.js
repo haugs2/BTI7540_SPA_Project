@@ -36,6 +36,12 @@ class RunEntryListItem extends Component {
     this.props.onEdit(idToEdit);
   }
 
+  parsePaceNumber(pacenumber) {
+    let minutes = Math.trunc(pacenumber);
+    let seconds = Math.round((pacenumber % 1) * 60);
+    return minutes.toString().concat(":").concat(seconds.toString());
+  }
+
   render() {
     return (
       <li key={this.props.id}>
@@ -51,7 +57,7 @@ class RunEntryListItem extends Component {
           </div>
           <div className="RunEntryListItem-item">
             <label className="RunEntryListItem-label">Pace:</label>
-            {this.props.pace} min/km
+            {this.parsePaceNumber(this.props.pace)} min/km
           </div>
 
           <div className="RunEntryListItem-item">

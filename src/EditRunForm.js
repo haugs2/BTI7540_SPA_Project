@@ -32,6 +32,7 @@ class EditRunForm extends Component {
     this.onRunEntryPaceChange = this.onRunEntryPaceChange.bind(this);
     this.onRunEntryCommentChange = this.onRunEntryCommentChange.bind(this);
     this.onRunEntryDateChange = this.onRunEntryDateChange.bind(this);
+    this.parsePaceString = this.parsePaceString.bind(this);
   }
 
   onRemoveRunEntryFromListClicked(event) {
@@ -64,6 +65,18 @@ class EditRunForm extends Component {
   onRunEntryDateChange(event) {
     this.setState({ date: event.target.value });
     this.handleChange(event);
+  }
+
+  // the pace is internally stored as a decimal number, e.g. 5:30 min/km pace corresponds to the number 5.5
+  parsePaceString(pacestring) {
+    if (pacestring) {
+      let pacestring_arr = pacestring.toString().split(":");
+      let integer_part = parseFloat(pacestring_arr[0]);
+      let fractional_part = parseFloat(pacestring_arr[1]) / 60;
+      return integer_part + fractional_part;
+    } else {
+      return 0;
+    }
   }
 
   handleChange = (event) => {
@@ -100,8 +113,12 @@ class EditRunForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    // another fake server would be https://my-json-server.typicode.com/haugs2/jsonruns/runs
-    let body = JSON.stringify(this.state);
+    let body = JSON.stringify({
+      date: this.state.date,
+      pace: this.parsePaceString(this.state.pace),
+      distance: this.state.distance,
+      comment: this.state.comment,
+    });
     console.log(body);
     // URL to the object we are about to update
     let url = "http://localhost:4000/runs/".concat(this.state.id);

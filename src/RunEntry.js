@@ -25,6 +25,7 @@ class RunEntry extends Component {
     this.resetState = this.resetState.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.parsePaceString = this.parsePaceString.bind(this);
   }
 
   resetState() {
@@ -107,7 +108,12 @@ class RunEntry extends Component {
     event.preventDefault();
 
     // another fake server would be https://my-json-server.typicode.com/haugs2/jsonruns/runs
-    let body = JSON.stringify(this.state);
+    let body = JSON.stringify({
+      date: this.state.date,
+      pace: this.parsePaceString(this.state.pace),
+      distance: this.state.distance,
+      comment: this.state.comment,
+    });
     fetch("http://localhost:4000/runs", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -120,6 +126,14 @@ class RunEntry extends Component {
     this.onRunEntryAdd(event);
     //event.preventDefault();
   };
+
+  // the pace is internally stored as a decimal number, e.g. 5:30 min/km pace corresponds to the number 5.5
+  parsePaceString(pacestring) {
+    let pacestring_arr = pacestring.split(":");
+    let integer_part = parseFloat(pacestring_arr[0]);
+    let fractional_part = parseFloat(pacestring_arr[1]) / 60;
+    return integer_part + fractional_part;
+  }
 
   validateForm = (errors) => {
     let valid = true;
