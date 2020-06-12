@@ -18,7 +18,7 @@ class RunEntryListItem extends Component {
   }
 
   onRemoveRunEntryFromListClicked(event) {
-    //event.preventDefault();
+    event.preventDefault();
     let idToDelete = this.props.id;
     let url = "https://my-running-db.herokuapp.com/runs/".concat(idToDelete);
     fetch(url, {
@@ -33,7 +33,7 @@ class RunEntryListItem extends Component {
   }
 
   onEditRunEntryFromListClicked(event) {
-    //event.preventDefault();
+    event.preventDefault();
     let idToEdit = this.props.id;
     this.props.onEdit(idToEdit);
   }

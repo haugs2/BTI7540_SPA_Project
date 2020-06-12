@@ -38,13 +38,13 @@ class EditRunForm extends Component {
   }
 
   onRemoveRunEntryFromListClicked(event) {
-    // event.preventDefault();
+    event.preventDefault();
     let idToDelete = this.props.id;
     this.props.onDelete(idToDelete);
   }
 
   onEditRunEntryFromListClicked(event) {
-    //event.preventDefault();
+    event.preventDefault();
     let idToEdit = this.props.id;
     this.props.onEdit(idToEdit);
   }
@@ -101,7 +101,7 @@ class EditRunForm extends Component {
   };
 
   handleSubmit = (event) => {
-    //event.preventDefault();
+    event.preventDefault();
 
     let body = JSON.stringify({
       date: this.state.date,
@@ -123,7 +123,7 @@ class EditRunForm extends Component {
     });
 
     this.props.onEditDone();
-    //event.preventDefault();
+    event.preventDefault();
   };
 
   render() {

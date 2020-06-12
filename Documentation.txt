@@ -1,0 +1,39 @@
+Documentation
+
+
+Introduction: 
+
+The sample application in the style of a "Todo list application" is a type of exercise diary and allows the user to add, edit and delete runs.
+Namely, a run entry consists of
+-Date
+-Distance
+-Pace
+-Comment
+
+The pace is an entity that most runners refer to and describes the minutes needed to run 1k (or 1 mile). So the unit of pace is min/km. When tracking ones progress this unit is used rather than
+the time needed for a certain distance.
+
+
+Experience during this project:
+
+First step was to make myself familiar with React framework. For this i followed a number of online tutorials as well as the React documentation which I thought was very good. 
+I then started to implement the application. Like always, a too large amount of time was spent on figuring out CSS problems. 
+Since I had chosen to do a Running diary application rather than the standard ToDo one, I could not user the server provided with ToDo data but had to set up some kind of backend to poll my data from. 
+I finally settled on json-server https://github.com/typicode/json-server which unlike other dummy server solutions allowed for real CRUD operations to take place.
+Finally I deployed the dummy server on Heroku https://my-running-db.herokuapp.com/runs.
+I decided to display the pace as a string of form "mm:ss" but store it internally as a number. Therefore I had to parse between strings of form e.g. "5:30" (5 min 30 s) to numbers like 5.5.
+Also, I added validators for all fields to ensure data would be entered in correct format. 
+I wanted to deploy my app on Heroku as well but ran into some problems. Due to lack of time I did not succeed to figure out this problem, which is why the app can only be run locally.
+
+
+Comparison to Vanilla JS Application:
+
+Thanks to the concept of components and state, it is in comparison much less complex to process events in React than in plain JS. 
+Also the virtual DOM allows you to insert JS code into your template code, a concept which was familiar to me from using Flask together with Jinja2 template language and which allows for 
+elegant and short code especially when it comes to different code being rendered depending on some case by case distinction. 
+Eventually it gets cumbersome to pass event handlers between parent and child components to create a chain of event handlers. 
+From what I have gathered, Redux would make this a lot easier but eventually I did not have the time to dive into it. 
+
+Overall, I was impressed by React. I have recently implemented a CRUD application at my job using Flask framework which was first intended to be very simplistic but then with time more and more 
+user requirements piled up and made the application more complex. If I had to do this work again I would use Flask only for the Backend and React for the frontend and I suggested this to my 
+supervisor for future web application projects.

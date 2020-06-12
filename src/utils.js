@@ -13,7 +13,10 @@ export default function parsePaceNumber(pacenumber) {
 export function parsePaceString(pacestring) {
   let pacestring_arr = pacestring.split(":");
   let integer_part = parseFloat(pacestring_arr[0]);
-  let fractional_part = parseFloat(pacestring_arr[1].replace(/^0+/, "")) / 60;
+  let fractional_part =
+    pacestring_arr[1] == "00"
+      ? 0
+      : parseFloat(pacestring_arr[1].replace(/^0+/, "")) / 60;
   return round(integer_part + fractional_part, 2);
 }
 

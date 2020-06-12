@@ -125,7 +125,7 @@ class RunEntry extends Component {
       return response.json();
     });
     this.onRunEntryAdd(event);
-    //event.preventDefault();
+    event.preventDefault();
   };
 
   validateForm = (errors) => {

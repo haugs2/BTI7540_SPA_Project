@@ -3,6 +3,7 @@ import RunEntry from "./RunEntry";
 import RunEntryList from "./RunEntryList";
 import "./App.css";
 import { FaRunning } from "react-icons/fa";
+import parsePaceNumber, { parsePaceString } from "./utils";
 
 class App extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class App extends Component {
     this.setRunToEdit = this.setRunToEdit.bind(this);
     this.removeRunToEdit = this.removeRunToEdit.bind(this);
     this.loadData = this.loadData.bind(this);
+    this.parsePaceString = parsePaceString.bind(this);
   }
 
   componentDidMount() {
@@ -68,13 +70,12 @@ class App extends Component {
       id: maxId + 1,
       date: date,
       distance: distance,
-      pace: pace,
+      pace: this.parsePaceString(pace),
       comment: comment,
     });
     this.setState({
       runentries: runentries,
     });
-    this.loadData();
   }
 
   setRunToEdit(idToEdit) {
