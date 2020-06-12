@@ -47,7 +47,7 @@ class App extends Component {
   }
 
   loadData() {
-    fetch("http://localhost:4000/runs")
+    fetch("https://my-running-db.herokuapp.com/runs")
       .then((res) => res.json())
       .then((json) => {
         this.setState({

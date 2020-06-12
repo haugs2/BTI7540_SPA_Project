@@ -115,7 +115,7 @@ class RunEntry extends Component {
       distance: parseFloat(this.state.distance),
       comment: this.state.comment,
     });
-    fetch("http://localhost:4000/runs", {
+    fetch("https://my-running-db.herokuapp.com/runs", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       // We convert the React state to JSON and send it as the POST body

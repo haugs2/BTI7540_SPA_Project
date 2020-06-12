@@ -111,7 +111,7 @@ class EditRunForm extends Component {
     });
     console.log(body);
     // URL to the object we are about to update
-    let url = "http://localhost:4000/runs/".concat(this.state.id);
+    let url = "https://my-running-db.herokuapp.com/runs/".concat(this.state.id);
     fetch(url, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
