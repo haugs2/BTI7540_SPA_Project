@@ -5,6 +5,7 @@ import "./style/EditRunForm.css";
 import { FaEdit } from "react-icons/fa";
 import { FaSave } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import parsePaceNumber, { parsePaceString } from "./utils";
 
 class EditRunForm extends Component {
   constructor(props) {
@@ -32,17 +33,18 @@ class EditRunForm extends Component {
     this.onRunEntryPaceChange = this.onRunEntryPaceChange.bind(this);
     this.onRunEntryCommentChange = this.onRunEntryCommentChange.bind(this);
     this.onRunEntryDateChange = this.onRunEntryDateChange.bind(this);
-    this.parsePaceString = this.parsePaceString.bind(this);
+    this.parsePaceNumber = parsePaceNumber.bind(this);
+    this.parsePaceString = parsePaceString.bind(this);
   }
 
   onRemoveRunEntryFromListClicked(event) {
-    event.preventDefault();
+    // event.preventDefault();
     let idToDelete = this.props.id;
     this.props.onDelete(idToDelete);
   }
 
   onEditRunEntryFromListClicked(event) {
-    event.preventDefault();
+    //event.preventDefault();
     let idToEdit = this.props.id;
     this.props.onEdit(idToEdit);
   }
@@ -65,18 +67,6 @@ class EditRunForm extends Component {
   onRunEntryDateChange(event) {
     this.setState({ date: event.target.value });
     this.handleChange(event);
-  }
-
-  // the pace is internally stored as a decimal number, e.g. 5:30 min/km pace corresponds to the number 5.5
-  parsePaceString(pacestring) {
-    if (pacestring) {
-      let pacestring_arr = pacestring.toString().split(":");
-      let integer_part = parseFloat(pacestring_arr[0]);
-      let fractional_part = parseFloat(pacestring_arr[1]) / 60;
-      return integer_part + fractional_part;
-    } else {
-      return 0;
-    }
   }
 
   handleChange = (event) => {
@@ -111,7 +101,7 @@ class EditRunForm extends Component {
   };
 
   handleSubmit = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
 
     let body = JSON.stringify({
       date: this.state.date,

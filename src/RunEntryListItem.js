@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./style/RunEntryListItem.css";
 import { FaEdit } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import parsePaceNumber, { parsePaceString } from "./utils";
 
 class RunEntryListItem extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class RunEntryListItem extends Component {
     this.onEditRunEntryFromListClicked = this.onEditRunEntryFromListClicked.bind(
       this
     );
+    this.parsePaceNumber = parsePaceNumber.bind(this);
   }
 
   onRemoveRunEntryFromListClicked(event) {
@@ -34,12 +36,6 @@ class RunEntryListItem extends Component {
     event.preventDefault();
     let idToEdit = this.props.id;
     this.props.onEdit(idToEdit);
-  }
-
-  parsePaceNumber(pacenumber) {
-    let minutes = Math.trunc(pacenumber);
-    let seconds = Math.round((pacenumber % 1) * 60);
-    return minutes.toString().concat(":").concat(seconds.toString());
   }
 
   render() {
