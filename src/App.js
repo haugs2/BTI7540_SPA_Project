@@ -86,17 +86,27 @@ class App extends Component {
     });
   }
 
-  removeRunToEdit(idNoLongerEdit) {
+  removeRunToEdit(idNoLongerEdit, distance, pace, date, comment) {
     let runsToEdit = this.state.editingIds;
+    let runentries = this.state.runentries;
     for (var i = 0; i < runsToEdit.length; i++) {
-      if (runsToEdit[i].id == idNoLongerEdit) {
+      if (runsToEdit[i] == idNoLongerEdit) {
         runsToEdit.splice(i, 1);
       }
     }
+    for (var i = 0; i < runentries.length; i++) {
+      if (runentries[i].id == idNoLongerEdit) {
+        runentries[i].distance = distance;
+        runentries[i].pace = this.parsePaceString(pace);
+        runentries[i].date = date;
+        runentries[i].comment = comment;
+      }
+    }
+
     this.setState({
       editingIds: runsToEdit,
+      runentries: runentries,
     });
-    this.loadData();
   }
 
   removeRun(idToDelete) {

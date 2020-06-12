@@ -11,7 +11,7 @@ class EditRunForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: props.id,
+      id: this.props.id,
       distance: this.props.defaultDistance,
       pace: this.props.defaultPace,
       comment: this.props.defaultComment,
@@ -122,7 +122,13 @@ class EditRunForm extends Component {
       return response.json();
     });
 
-    this.props.onEditDone();
+    this.props.onEditDone(
+      this.state.id,
+      this.state.distance,
+      this.state.pace,
+      this.state.date,
+      this.state.comment
+    );
     event.preventDefault();
   };
 

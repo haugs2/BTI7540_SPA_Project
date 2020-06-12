@@ -19,12 +19,12 @@ class RunEntryList extends Component {
     return this.props.removeItem(id);
   }
 
-  editListItem(id) {
+  editListItem(id, dist, pace, date, comment) {
     return this.props.handleEdit(id);
   }
 
-  editDoneListItem(id) {
-    return this.props.handleEditDone(id);
+  editDoneListItem(id, dist, pace, date, comment) {
+    return this.props.handleEditDone(id, dist, pace, date, comment);
   }
 
   parsePaceNumber(pacenumber) {
