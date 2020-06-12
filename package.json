@@ -17,6 +17,7 @@
     "react-scripts": "3.4.1"
   },
   "main": "index.js",
+  "start": "node server.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
