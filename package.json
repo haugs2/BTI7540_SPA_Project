@@ -16,9 +16,8 @@
     "react-icons": "^3.10.0",
     "react-scripts": "3.4.1"
   },
-  "main": "index.js",
-  "start": "node server.js",
   "scripts": {
+   "main": "index.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
